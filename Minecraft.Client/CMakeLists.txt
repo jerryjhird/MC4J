@@ -5203,5 +5203,5 @@ elseif("${CMAKE_VS_PLATFORM_NAME}" STREQUAL "Xbox 360")
         "xonline"
     )
 endif()
+add_compile_options(-fpermissive)
 target_link_libraries(${PROJECT_NAME} PRIVATE "${ADDITIONAL_LIBRARY_DEPENDENCIES}")
-

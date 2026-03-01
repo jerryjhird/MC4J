@@ -9,8 +9,31 @@
 #define AUTO_VAR(_var, _val) auto _var = _val
 #endif
 
-#if ( defined _XBOX || defined _WINDOWS64  || defined _DURANGO )
-typedef unsigned __int64 __uint64;
+typedef unsigned __int64;
+typedef unsigned __uint64;
+
+#if defined( __linux__ )
+#include <cstring>
+typedef unsigned int DWORD;
+typedef const char *LPCSTR;
+typedef bool BOOL;
+typedef void* LPVOID;
+typedef char WCHAR;
+typedef unsigned char BYTE;
+typedef BYTE* PBYTE;
+typedef const wchar_t* LPCWSTR;
+typedef unsigned long long ULONGLONG;
+typedef int HRESULT;
+typedef unsigned int UINT;
+#define TRUE true
+#define WINAPI
+typedef void* HANDLE;
+typedef int INT;
+// From PSXSense
+#define XUSER_MAX_COUNT                 4
+#define XUSER_INDEX_ANY                 0x000000FF
+
+#define CRITICAL_SECTION
 #endif
 
 #ifdef _WINDOWS64
