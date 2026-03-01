@@ -2471,654 +2471,137 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
 ################################################################################
 # Target name
 ################################################################################
-if("${CMAKE_VS_PLATFORM_NAME}" STREQUAL "Durango")
-    set_target_properties(${PROJECT_NAME} PROPERTIES
-        TARGET_NAME_CONTENTPACKAGE_NO_TU   "${OUTPUT_DIRECTORY}default$ENV{TargetExt}"
-        TARGET_NAME_CONTENTPACKAGE_SYMBOLS "${OUTPUT_DIRECTORY}default$ENV{TargetExt}"
-        TARGET_NAME_CONTENTPACKAGE         "${PROJECT_NAME}"
-        TARGET_NAME_DEBUG                  "${PROJECT_NAME}"
-        TARGET_NAME_RELEASE                "${PROJECT_NAME}"
-        TARGET_NAME_RELEASEFORART          "${OUTPUT_DIRECTORY}default$ENV{TargetExt}"
-    )
-elseif("${CMAKE_VS_PLATFORM_NAME}" STREQUAL "PS3")
-    set_target_properties(${PROJECT_NAME} PROPERTIES
-        TARGET_NAME_CONTENTPACKAGE_NO_TU   "${OUTPUT_DIRECTORY}default$ENV{TargetExt}"
-        TARGET_NAME_CONTENTPACKAGE_SYMBOLS "${OUTPUT_DIRECTORY}default$ENV{TargetExt}"
-        TARGET_NAME_CONTENTPACKAGE         "${OUTPUT_DIRECTORY}default$ENV{TargetExt}"
-        TARGET_NAME_RELEASEFORART          "${OUTPUT_DIRECTORY}default$ENV{TargetExt}"
-    )
-elseif("${CMAKE_VS_PLATFORM_NAME}" STREQUAL "PSVita")
-    set_target_properties(${PROJECT_NAME} PROPERTIES
-        TARGET_NAME_CONTENTPACKAGE_NO_TU   "${OUTPUT_DIRECTORY}default$ENV{TargetExt}"
-        TARGET_NAME_CONTENTPACKAGE_SYMBOLS "${OUTPUT_DIRECTORY}default$ENV{TargetExt}"
-        TARGET_NAME_RELEASEFORART          "${OUTPUT_DIRECTORY}default$ENV{TargetExt}"
-    )
-elseif("${CMAKE_VS_PLATFORM_NAME}" STREQUAL "Windows64")
-    set_target_properties(${PROJECT_NAME} PROPERTIES
-        TARGET_NAME_CONTENTPACKAGE_NO_TU   "${OUTPUT_DIRECTORY}default$ENV{TargetExt}"
-        TARGET_NAME_CONTENTPACKAGE_SYMBOLS "${OUTPUT_DIRECTORY}default$ENV{TargetExt}"
-        TARGET_NAME_CONTENTPACKAGE         "${OUTPUT_DIRECTORY}default$ENV{TargetExt}"
-        TARGET_NAME_RELEASEFORART          "${OUTPUT_DIRECTORY}default$ENV{TargetExt}"
-    )
-elseif("${CMAKE_VS_PLATFORM_NAME}" STREQUAL "Xbox 360")
-    set_target_properties(${PROJECT_NAME} PROPERTIES
-        TARGET_NAME_CONTENTPACKAGE_NO_TU   "${OUTPUT_DIRECTORY}default$ENV{TargetExt}"
-        TARGET_NAME_CONTENTPACKAGE_SYMBOLS "${OUTPUT_DIRECTORY}default$ENV{TargetExt}"
-        TARGET_NAME_CONTENTPACKAGE         "${OUTPUT_DIRECTORY}default$ENV{TargetExt}"
-    )
-endif()
+set_target_properties(${PROJECT_NAME} PROPERTIES
+    TARGET_NAME_CONTENTPACKAGE_NO_TU   "${OUTPUT_DIRECTORY}default$ENV{TargetExt}"
+    TARGET_NAME_CONTENTPACKAGE_SYMBOLS "${OUTPUT_DIRECTORY}default$ENV{TargetExt}"
+    TARGET_NAME_CONTENTPACKAGE         "${PROJECT_NAME}"
+    TARGET_NAME_DEBUG                  "${PROJECT_NAME}"
+    TARGET_NAME_RELEASE                "${PROJECT_NAME}"
+    TARGET_NAME_RELEASEFORART          "${OUTPUT_DIRECTORY}default$ENV{TargetExt}"
+)
+
 ################################################################################
 # Output directory
 ################################################################################
-if("${CMAKE_VS_PLATFORM_NAME}" STREQUAL "Durango")
-    set_target_properties(${PROJECT_NAME} PROPERTIES
-        OUTPUT_DIRECTORY_CONTENTPACKAGE_NO_TU   "${CMAKE_CURRENT_SOURCE_DIR}/"
-        OUTPUT_DIRECTORY_CONTENTPACKAGE_SYMBOLS "${CMAKE_CURRENT_SOURCE_DIR}/"
-        OUTPUT_DIRECTORY_CONTENTPACKAGE         "${CMAKE_SOURCE_DIR}/${CMAKE_VS_PLATFORM_NAME}_$<CONFIG>/"
-        OUTPUT_DIRECTORY_DEBUG                  "${CMAKE_SOURCE_DIR}/${CMAKE_VS_PLATFORM_NAME}_$<CONFIG>/"
-        OUTPUT_DIRECTORY_RELEASE                "${CMAKE_SOURCE_DIR}/${CMAKE_VS_PLATFORM_NAME}_$<CONFIG>/"
-        OUTPUT_DIRECTORY_RELEASEFORART          "${CMAKE_CURRENT_SOURCE_DIR}/"
-    )
-elseif("${CMAKE_VS_PLATFORM_NAME}" STREQUAL "PS3")
-    set_target_properties(${PROJECT_NAME} PROPERTIES
-        OUTPUT_DIRECTORY_CONTENTPACKAGE_NO_TU   "${CMAKE_CURRENT_SOURCE_DIR}/"
-        OUTPUT_DIRECTORY_CONTENTPACKAGE_SYMBOLS "${CMAKE_CURRENT_SOURCE_DIR}/"
-        OUTPUT_DIRECTORY_CONTENTPACKAGE         "${CMAKE_CURRENT_SOURCE_DIR}/"
-        OUTPUT_DIRECTORY_RELEASEFORART          "${CMAKE_CURRENT_SOURCE_DIR}/"
-    )
-elseif("${CMAKE_VS_PLATFORM_NAME}" STREQUAL "PSVita")
-    set_target_properties(${PROJECT_NAME} PROPERTIES
-        OUTPUT_DIRECTORY_CONTENTPACKAGE_NO_TU   "${CMAKE_CURRENT_SOURCE_DIR}/"
-        OUTPUT_DIRECTORY_CONTENTPACKAGE_SYMBOLS "${CMAKE_CURRENT_SOURCE_DIR}/"
-        OUTPUT_DIRECTORY_RELEASEFORART          "${CMAKE_CURRENT_SOURCE_DIR}/"
-    )
-elseif("${CMAKE_VS_PLATFORM_NAME}" STREQUAL "Windows64")
-    set_target_properties(${PROJECT_NAME} PROPERTIES
-        OUTPUT_DIRECTORY_CONTENTPACKAGE_NO_TU   "${CMAKE_CURRENT_SOURCE_DIR}/"
-        OUTPUT_DIRECTORY_CONTENTPACKAGE_SYMBOLS "${CMAKE_CURRENT_SOURCE_DIR}/"
-        OUTPUT_DIRECTORY_CONTENTPACKAGE         "${CMAKE_CURRENT_SOURCE_DIR}/"
-        OUTPUT_DIRECTORY_RELEASEFORART          "${CMAKE_CURRENT_SOURCE_DIR}/"
-    )
-elseif("${CMAKE_VS_PLATFORM_NAME}" STREQUAL "Xbox 360")
-    set_target_properties(${PROJECT_NAME} PROPERTIES
-        OUTPUT_DIRECTORY_CONTENTPACKAGE_NO_TU   "${CMAKE_CURRENT_SOURCE_DIR}/"
-        OUTPUT_DIRECTORY_CONTENTPACKAGE_SYMBOLS "${CMAKE_CURRENT_SOURCE_DIR}/"
-        OUTPUT_DIRECTORY_CONTENTPACKAGE         "${CMAKE_CURRENT_SOURCE_DIR}/"
-    )
-endif()
-if("${CMAKE_VS_PLATFORM_NAME}" STREQUAL "Durango")
-    set_target_properties(${PROJECT_NAME} PROPERTIES
-        PDB_OUTPUT_DIRECTORY                        "${OUTPUT_DIRECTORY}"
-    )
-elseif("${CMAKE_VS_PLATFORM_NAME}" STREQUAL "PS3")
-    set_target_properties(${PROJECT_NAME} PROPERTIES
-        PDB_OUTPUT_DIRECTORY                        "${OUTPUT_DIRECTORY}"
-    )
-elseif("${CMAKE_VS_PLATFORM_NAME}" STREQUAL "PSVita")
-    set_target_properties(${PROJECT_NAME} PROPERTIES
-        PDB_OUTPUT_DIRECTORY                        "${OUTPUT_DIRECTORY}"
-    )
-elseif("${CMAKE_VS_PLATFORM_NAME}" STREQUAL "Windows64")
-    set_target_properties(${PROJECT_NAME} PROPERTIES
-        PDB_OUTPUT_DIRECTORY                        "${OUTPUT_DIRECTORY}"
-    )
-elseif("${CMAKE_VS_PLATFORM_NAME}" STREQUAL "Xbox 360")
-    set_target_properties(${PROJECT_NAME} PROPERTIES
-        PDB_OUTPUT_DIRECTORY                        "${OUTPUT_DIRECTORY}"
-    )
-endif()
-if("${CMAKE_VS_PLATFORM_NAME}" STREQUAL "Durango")
-    set_target_properties(${PROJECT_NAME} PROPERTIES
-        INTERPROCEDURAL_OPTIMIZATION_CONTENTPACKAGE_NO_TU   "TRUE"
-        INTERPROCEDURAL_OPTIMIZATION_CONTENTPACKAGE_SYMBOLS "TRUE"
-        INTERPROCEDURAL_OPTIMIZATION_CONTENTPACKAGE         "TRUE"
-        INTERPROCEDURAL_OPTIMIZATION_DEBUG                  "FALSE"
-        INTERPROCEDURAL_OPTIMIZATION_RELEASE                "TRUE"
-        INTERPROCEDURAL_OPTIMIZATION_RELEASEFORART          "TRUE"
-    )
-elseif("${CMAKE_VS_PLATFORM_NAME}" STREQUAL "PS3")
-    set_target_properties(${PROJECT_NAME} PROPERTIES
-        INTERPROCEDURAL_OPTIMIZATION_CONTENTPACKAGE_NO_TU   "TRUE"
-        INTERPROCEDURAL_OPTIMIZATION_CONTENTPACKAGE_SYMBOLS "TRUE"
-        INTERPROCEDURAL_OPTIMIZATION_CONTENTPACKAGE         "TRUE"
-        INTERPROCEDURAL_OPTIMIZATION_RELEASEFORART          "TRUE"
-    )
-elseif("${CMAKE_VS_PLATFORM_NAME}" STREQUAL "PSVita")
-    set_target_properties(${PROJECT_NAME} PROPERTIES
-        INTERPROCEDURAL_OPTIMIZATION_CONTENTPACKAGE_NO_TU   "TRUE"
-        INTERPROCEDURAL_OPTIMIZATION_CONTENTPACKAGE_SYMBOLS "TRUE"
-        INTERPROCEDURAL_OPTIMIZATION_RELEASEFORART          "TRUE"
-    )
-elseif("${CMAKE_VS_PLATFORM_NAME}" STREQUAL "Windows64")
-    set_target_properties(${PROJECT_NAME} PROPERTIES
-        INTERPROCEDURAL_OPTIMIZATION_CONTENTPACKAGE_NO_TU   "TRUE"
-        INTERPROCEDURAL_OPTIMIZATION_CONTENTPACKAGE_SYMBOLS "TRUE"
-        INTERPROCEDURAL_OPTIMIZATION_CONTENTPACKAGE         "TRUE"
-        INTERPROCEDURAL_OPTIMIZATION_RELEASEFORART          "TRUE"
-    )
-elseif("${CMAKE_VS_PLATFORM_NAME}" STREQUAL "Xbox 360")
-    set_target_properties(${PROJECT_NAME} PROPERTIES
-        INTERPROCEDURAL_OPTIMIZATION_CONTENTPACKAGE_NO_TU   "TRUE"
-        INTERPROCEDURAL_OPTIMIZATION_CONTENTPACKAGE_SYMBOLS "TRUE"
-        INTERPROCEDURAL_OPTIMIZATION_CONTENTPACKAGE         "TRUE"
-    )
-endif()
+set_target_properties(${PROJECT_NAME} PROPERTIES
+    OUTPUT_DIRECTORY_CONTENTPACKAGE_NO_TU   "${CMAKE_CURRENT_SOURCE_DIR}/"
+    OUTPUT_DIRECTORY_CONTENTPACKAGE_SYMBOLS "${CMAKE_CURRENT_SOURCE_DIR}/"
+    OUTPUT_DIRECTORY_CONTENTPACKAGE         "${CMAKE_CURRENT_SOURCE_DIR}/"
+)
+
+set_target_properties(${PROJECT_NAME} PROPERTIES
+    PDB_OUTPUT_DIRECTORY                        "${OUTPUT_DIRECTORY}"
+)
+
+set_target_properties(${PROJECT_NAME} PROPERTIES
+    INTERPROCEDURAL_OPTIMIZATION_CONTENTPACKAGE_NO_TU   "TRUE"
+    INTERPROCEDURAL_OPTIMIZATION_CONTENTPACKAGE_SYMBOLS "TRUE"
+    INTERPROCEDURAL_OPTIMIZATION_CONTENTPACKAGE         "TRUE"
+)
+
+
 ################################################################################
 # MSVC runtime library
 ################################################################################
-get_property(MSVC_RUNTIME_LIBRARY_DEFAULT TARGET ${PROJECT_NAME} PROPERTY MSVC_RUNTIME_LIBRARY)
-if("${CMAKE_VS_PLATFORM_NAME}" STREQUAL "Durango")
-    string(CONCAT "MSVC_RUNTIME_LIBRARY_STR"
-        $<$<CONFIG:ContentPackage_NO_TU>:
-            MultiThreaded
-        >
-        $<$<CONFIG:CONTENTPACKAGE_SYMBOLS>:
-            MultiThreaded
-        >
-        $<$<CONFIG:ContentPackage>:
-            MultiThreadedDLL
-        >
-        $<$<CONFIG:Debug>:
-            MultiThreadedDebugDLL
-        >
-        $<$<CONFIG:Release>:
-            MultiThreadedDLL
-        >
-        $<$<CONFIG:ReleaseForArt>:
-            MultiThreaded
-        >
-        $<$<NOT:$<OR:$<CONFIG:ContentPackage_NO_TU>,$<CONFIG:CONTENTPACKAGE_SYMBOLS>,$<CONFIG:ContentPackage>,$<CONFIG:Debug>,$<CONFIG:Release>,$<CONFIG:ReleaseForArt>>>:${MSVC_RUNTIME_LIBRARY_DEFAULT}>
-    )
-elseif("${CMAKE_VS_PLATFORM_NAME}" STREQUAL "PS3")
-    string(CONCAT "MSVC_RUNTIME_LIBRARY_STR"
-        $<$<CONFIG:ContentPackage_NO_TU>:
-            MultiThreaded
-        >
-        $<$<CONFIG:CONTENTPACKAGE_SYMBOLS>:
-            MultiThreaded
-        >
-        $<$<CONFIG:ContentPackage>:
-            MultiThreaded
-        >
-        $<$<CONFIG:Debug>:
-            MultiThreadedDebug
-        >
-        $<$<CONFIG:Release>:
-            MultiThreadedDebug
-        >
-        $<$<CONFIG:ReleaseForArt>:
-            MultiThreaded
-        >
-        $<$<NOT:$<OR:$<CONFIG:ContentPackage_NO_TU>,$<CONFIG:CONTENTPACKAGE_SYMBOLS>,$<CONFIG:ContentPackage>,$<CONFIG:Debug>,$<CONFIG:Release>,$<CONFIG:ReleaseForArt>>>:${MSVC_RUNTIME_LIBRARY_DEFAULT}>
-    )
-elseif("${CMAKE_VS_PLATFORM_NAME}" STREQUAL "PSVita")
-    string(CONCAT "MSVC_RUNTIME_LIBRARY_STR"
-        $<$<CONFIG:ContentPackage_NO_TU>:
-            MultiThreaded
-        >
-        $<$<CONFIG:CONTENTPACKAGE_SYMBOLS>:
-            MultiThreaded
-        >
-        $<$<CONFIG:ContentPackage>:
-            MultiThreaded
-        >
-        $<$<CONFIG:Debug>:
-            MultiThreadedDebug
-        >
-        $<$<CONFIG:Release>:
-            MultiThreadedDebug
-        >
-        $<$<CONFIG:ReleaseForArt>:
-            MultiThreaded
-        >
-        $<$<NOT:$<OR:$<CONFIG:ContentPackage_NO_TU>,$<CONFIG:CONTENTPACKAGE_SYMBOLS>,$<CONFIG:ContentPackage>,$<CONFIG:Debug>,$<CONFIG:Release>,$<CONFIG:ReleaseForArt>>>:${MSVC_RUNTIME_LIBRARY_DEFAULT}>
-    )
-elseif("${CMAKE_VS_PLATFORM_NAME}" STREQUAL "Windows64")
-    string(CONCAT "MSVC_RUNTIME_LIBRARY_STR"
-        $<$<CONFIG:ContentPackage_NO_TU>:
-            MultiThreaded
-        >
-        $<$<CONFIG:CONTENTPACKAGE_SYMBOLS>:
-            MultiThreaded
-        >
-        $<$<CONFIG:ContentPackage>:
-            MultiThreaded
-        >
-        $<$<CONFIG:Debug>:
-            MultiThreadedDebug
-        >
-        $<$<CONFIG:Release>:
-            MultiThreaded
-        >
-        $<$<CONFIG:ReleaseForArt>:
-            MultiThreaded
-        >
-        $<$<NOT:$<OR:$<CONFIG:ContentPackage_NO_TU>,$<CONFIG:CONTENTPACKAGE_SYMBOLS>,$<CONFIG:ContentPackage>,$<CONFIG:Debug>,$<CONFIG:Release>,$<CONFIG:ReleaseForArt>>>:${MSVC_RUNTIME_LIBRARY_DEFAULT}>
-    )
-elseif("${CMAKE_VS_PLATFORM_NAME}" STREQUAL "Xbox 360")
-    string(CONCAT "MSVC_RUNTIME_LIBRARY_STR"
-        $<$<CONFIG:ContentPackage_NO_TU>:
-            MultiThreaded
-        >
-        $<$<CONFIG:CONTENTPACKAGE_SYMBOLS>:
-            MultiThreaded
-        >
-        $<$<CONFIG:ContentPackage>:
-            MultiThreaded
-        >
-        $<$<CONFIG:Debug>:
-            MultiThreadedDebug
-        >
-        $<$<CONFIG:Release>:
-            MultiThreaded
-        >
-        $<$<CONFIG:ReleaseForArt>:
-            MultiThreaded
-        >
-        $<$<NOT:$<OR:$<CONFIG:ContentPackage_NO_TU>,$<CONFIG:CONTENTPACKAGE_SYMBOLS>,$<CONFIG:ContentPackage>,$<CONFIG:Debug>,$<CONFIG:Release>,$<CONFIG:ReleaseForArt>>>:${MSVC_RUNTIME_LIBRARY_DEFAULT}>
-    )
-endif()
+string(CONCAT "MSVC_RUNTIME_LIBRARY_STR"
+       $<$<CONFIG:ContentPackage_NO_TU>:
+        libstdc++
+    >
+    $<$<CONFIG:CONTENTPACKAGE_SYMBOLS>:
+        libstdc++
+    >
+    $<$<CONFIG:ContentPackage>:
+        libstdc++
+    >
+    $<$<CONFIG:Debug>:
+        libstdc++_debug
+    >
+    $<$<CONFIG:Release>:
+        libstdc++
+    >
+    $<$<CONFIG:ReleaseForArt>:
+        libstdc++
+    >
+    $<$<NOT:$<OR:$<CONFIG:ContentPackage_NO_TU>,$<CONFIG:CONTENTPACKAGE_SYMBOLS>,$<CONFIG:ContentPackage>,$<CONFIG:Debug>,$<CONFIG:Release>,$<CONFIG:ReleaseForArt>>>:${CXX_RUNTIME_LIBRARY_DEFAULT}>
+)
+
+
 set_target_properties(${PROJECT_NAME} PROPERTIES MSVC_RUNTIME_LIBRARY ${MSVC_RUNTIME_LIBRARY_STR})
 
-################################################################################
-# Include directories
-################################################################################
-if("${CMAKE_VS_PLATFORM_NAME}" STREQUAL "Durango")
-    target_include_directories(${PROJECT_NAME} PUBLIC
-        "$<$<CONFIG:ContentPackage>:"
-            "${CMAKE_CURRENT_SOURCE_DIR}/Durango/Iggy/include;"
-            "${CMAKE_CURRENT_SOURCE_DIR}/."
-        ">"
-        "$<$<CONFIG:Debug>:"
-            "${CMAKE_CURRENT_SOURCE_DIR}/Durango/Iggy/include;"
-            "${CMAKE_CURRENT_SOURCE_DIR}/."
-        ">"
-        "$<$<CONFIG:Release>:"
-            "${CMAKE_CURRENT_SOURCE_DIR}/Durango/Iggy/include;"
-            "${CMAKE_CURRENT_SOURCE_DIR}/."
-        ">"
-    )
-elseif("${CMAKE_VS_PLATFORM_NAME}" STREQUAL "ORBIS")
-    target_include_directories(${PROJECT_NAME} PUBLIC
-        "$<$<CONFIG:CONTENTPACKAGE_SYMBOLS>:"
-            "${CMAKE_CURRENT_SOURCE_DIR}/Orbis/Iggy/include;"
-            "${CMAKE_CURRENT_SOURCE_DIR}/."
-        ">"
-        "$<$<CONFIG:ContentPackage>:"
-            "${CMAKE_CURRENT_SOURCE_DIR}/Orbis/Iggy/include;"
-            "${CMAKE_CURRENT_SOURCE_DIR}/."
-        ">"
-        "$<$<CONFIG:Debug>:"
-            "${CMAKE_CURRENT_SOURCE_DIR}/Orbis/Iggy/include;"
-            "${CMAKE_CURRENT_SOURCE_DIR}/."
-        ">"
-        "$<$<CONFIG:Release>:"
-            "${CMAKE_CURRENT_SOURCE_DIR}/Orbis/Iggy/include;"
-            "${CMAKE_CURRENT_SOURCE_DIR}/."
-        ">"
-        "$<$<CONFIG:ReleaseForArt>:"
-            "${CMAKE_CURRENT_SOURCE_DIR}/Orbis/Iggy/include;"
-            "${CMAKE_CURRENT_SOURCE_DIR}/."
-        ">"
-    )
-elseif("${CMAKE_VS_PLATFORM_NAME}" STREQUAL "PS3")
-    target_include_directories(${PROJECT_NAME} PUBLIC
-        "$<$<CONFIG:CONTENTPACKAGE_SYMBOLS>:"
-            "${CMAKE_CURRENT_SOURCE_DIR}/PS3/Iggy/include"
-        ">"
-        "$<$<CONFIG:ContentPackage>:"
-            "${CMAKE_CURRENT_SOURCE_DIR}/PS3/Iggy/include"
-        ">"
-        "$<$<CONFIG:Debug>:"
-            "${CMAKE_CURRENT_SOURCE_DIR}/PS3/Iggy/include;"
-            "${CMAKE_CURRENT_SOURCE_DIR}/."
-        ">"
-        "$<$<CONFIG:Release>:"
-            "${CMAKE_CURRENT_SOURCE_DIR}/PS3/Iggy/include;"
-            "${CMAKE_CURRENT_SOURCE_DIR}/."
-        ">"
-        "$<$<CONFIG:ReleaseForArt>:"
-            "${CMAKE_CURRENT_SOURCE_DIR}/PS3/Iggy/include;"
-            "${CMAKE_CURRENT_SOURCE_DIR}/."
-        ">"
-    )
-elseif("${CMAKE_VS_PLATFORM_NAME}" STREQUAL "PSVita")
-    target_include_directories(${PROJECT_NAME} PUBLIC
-        "$<$<CONFIG:CONTENTPACKAGE_SYMBOLS>:"
-            "${CMAKE_CURRENT_SOURCE_DIR}/PS3/Iggy/include"
-        ">"
-        "$<$<CONFIG:ContentPackage>:"
-            "${CMAKE_CURRENT_SOURCE_DIR}/PSVita/Iggy/include"
-        ">"
-        "$<$<CONFIG:Debug>:"
-            "${CMAKE_CURRENT_SOURCE_DIR}/PSVita/Iggy/include;"
-            "${CMAKE_CURRENT_SOURCE_DIR}/."
-        ">"
-        "$<$<CONFIG:Release>:"
-            "${CMAKE_CURRENT_SOURCE_DIR}/PSVita/Iggy/include;"
-            "${CMAKE_CURRENT_SOURCE_DIR}/."
-        ">"
-        "$<$<CONFIG:ReleaseForArt>:"
-            "${CMAKE_CURRENT_SOURCE_DIR}/PS3/Iggy/include;"
-            "${CMAKE_CURRENT_SOURCE_DIR}/."
-        ">"
-    )
-elseif("${CMAKE_VS_PLATFORM_NAME}" STREQUAL "Windows64")
-    target_include_directories(${PROJECT_NAME} PUBLIC
-        "$<$<CONFIG:ContentPackage>:"
-            "${CMAKE_CURRENT_SOURCE_DIR}/."
-        ">"
-        "$<$<CONFIG:Debug>:"
-            "${CMAKE_CURRENT_SOURCE_DIR}/Windows64/Iggy/include;"
-            "${CMAKE_CURRENT_SOURCE_DIR}/."
-        ">"
-        "$<$<CONFIG:Release>:"
-            "${CMAKE_CURRENT_SOURCE_DIR}/Windows64/Iggy/include;"
-            "${CMAKE_CURRENT_SOURCE_DIR}/."
-        ">"
-    )
-elseif("${CMAKE_VS_PLATFORM_NAME}" STREQUAL "Xbox 360")
-    target_include_directories(${PROJECT_NAME} PUBLIC
-        "${CMAKE_CURRENT_SOURCE_DIR}/."
-    )
-endif()
+target_include_directories(${PROJECT_NAME} PUBLIC
+    "${CMAKE_CURRENT_SOURCE_DIR}/."
+)
+
 
 ################################################################################
 # Compile definitions
 ################################################################################
-if("${CMAKE_VS_PLATFORM_NAME}" STREQUAL "Durango")
-    target_compile_definitions(${PROJECT_NAME} PRIVATE
-        "$<$<CONFIG:ContentPackage_NO_TU>:"
-            "_TU_BUILD;"
-            "_FINAL_BUILD;"
-            "_ITERATOR_DEBUG_LEVEL=0;"
-            "NDEBUG;"
-            "_XBOX;"
-            "_CONTENT_PACKAGE;"
-            ";"
-            "_MBCS"
-        ">"
-        "$<$<CONFIG:CONTENTPACKAGE_SYMBOLS>:"
-            "_TU_BUILD;"
-            "_FINAL_BUILD;"
-            "_ITERATOR_DEBUG_LEVEL=0;"
-            "NDEBUG;"
-            "_XBOX;"
-            "_CONTENT_PACKAGE;"
-            ";"
-            "_MBCS"
-        ">"
-        "$<$<CONFIG:ContentPackage>:"
-            "SPLIT_SAVES;"
-            "_LARGE_WORLDS;"
-            "_EXTENDED_ACHIEVEMENTS;"
-            "_FINAL_BUILD;"
-            "_CONTENT_PACKAGE;"
-            "NDEBUG;"
-            "__WRL_NO_DEFAULT_LIB__;"
-            "_XM_AVX_INTRINSICS_;"
-            "_CRT_NON_CONFORMING_SWPRINTFS;"
-            "_CRT_SECURE_NO_WARNINGS;"
-            "UNICODE;"
-            "_UNICODE"
-        ">"
-        "$<$<CONFIG:Debug>:"
-            "SPLIT_SAVES;"
-            "_LARGE_WORLDS;"
-            "_EXTENDED_ACHIEVEMENTS;"
-            "UNICODE;"
-            "_UNICODE;"
-            "__WRL_NO_DEFAULT_LIB__;"
-            "WINAPI_FAMILY=WINAPI_FAMILY_TV_TITLE;"
-            "WIN32_LEAN_AND_MEAN;"
-            "_XM_AVX_INTRINSICS_;"
-            "_DEBUG_MENUS_ENABLED;"
-            "_DEBUG;"
-            "_CRT_NON_CONFORMING_SWPRINTFS;"
-            "_CRT_SECURE_NO_WARNINGS;"
-            "_DURANGO;"
-            "UNICODE;"
-            "_UNICODE"
-        ">"
-        "$<$<CONFIG:Release>:"
-            "SPLIT_SAVES;"
-            "_LARGE_WORLDS;"
-            "_EXTENDED_ACHIEVEMENTS;"
-            "PROFILE;"
-            "NDEBUG;"
-            "UNICODE;"
-            "_UNICODE;"
-            "__WRL_NO_DEFAULT_LIB__;"
-            "WINAPI_FAMILY=WINAPI_FAMILY_TV_TITLE;"
-            "WIN32_LEAN_AND_MEAN;"
-            "_XM_AVX_INTRINSICS_;"
-            "_DEBUG_MENUS_ENABLED;"
-            "_CRT_NON_CONFORMING_SWPRINTFS;"
-            "_CRT_SECURE_NO_WARNINGS;"
-            "_DURANGO;"
-            "UNICODE;"
-            "_UNICODE"
-        ">"
-        "$<$<CONFIG:ReleaseForArt>:"
-            "_TU_BUILD;"
-            "_FINAL_BUILD;"
-            "_ITERATOR_DEBUG_LEVEL=0;"
-            "NDEBUG;"
-            "_XBOX;"
-            "_CONTENT_PACKAGE;"
-            ";"
-            "_MBCS"
-        ">"
-    )
-elseif("${CMAKE_VS_PLATFORM_NAME}" STREQUAL "ORBIS")
-    target_compile_definitions(${PROJECT_NAME} PRIVATE
-        "$<$<CONFIG:CONTENTPACKAGE_SYMBOLS>:"
-            "SPLIT_SAVES;"
-            "_LARGE_WORLDS;"
-            "_EXTENDED_ACHIEVEMENTS;"
-            "_CONTENT_PACKAGE;"
-            "_FINAL_BUILD"
-        ">"
-        "$<$<CONFIG:ContentPackage>:"
-            "SPLIT_SAVES;"
-            "_LARGE_WORLDS;"
-            "_EXTENDED_ACHIEVEMENTS;"
-            "_CONTENT_PACKAGE;"
-            "_FINAL_BUILD"
-        ">"
-        "$<$<CONFIG:Debug>:"
-            "SPLIT_SAVES;"
-            "_LARGE_WORLDS;"
-            "_EXTENDED_ACHIEVEMENTS;"
-            "_DEBUG_MENUS_ENABLED;"
-            "_DEBUG"
-        ">"
-        "$<$<CONFIG:Release>:"
-            "SPLIT_SAVES;"
-            "_LARGE_WORLDS;"
-            "_EXTENDED_ACHIEVEMENTS;"
-            "_DEBUG_MENUS_ENABLED"
-        ">"
-        "$<$<CONFIG:ReleaseForArt>:"
-            "SPLIT_SAVES;"
-            "_LARGE_WORLDS;"
-            "_EXTENDED_ACHIEVEMENTS;"
-            "_DEBUG_MENUS_ENABLED;"
-            "_ART_BUILD"
-        ">"
-    )
-elseif("${CMAKE_VS_PLATFORM_NAME}" STREQUAL "PS3")
-    target_compile_definitions(${PROJECT_NAME} PRIVATE
-        "$<$<CONFIG:ContentPackage_NO_TU>:"
-            "_TU_BUILD;"
-            "_FINAL_BUILD;"
-            "NDEBUG;"
-            "_XBOX;"
-            "_CONTENT_PACKAGE;"
-            ""
-        ">"
-        "$<$<CONFIG:CONTENTPACKAGE_SYMBOLS>:"
-            "_CONTENT_PACKAGE;"
-            "_FINAL_BUILD;"
-            "_SECURE_SCL=0"
-        ">"
-        "$<$<CONFIG:ContentPackage>:"
-            "_CONTENT_PACKAGE;"
-            "_FINAL_BUILD;"
-            "_SECURE_SCL=0"
-        ">"
-        "$<$<CONFIG:Debug>:"
-            "_DEBUG_MENUS_ENABLED;"
-            "_SECURE_SCL=0;"
-            "_DEBUG"
-        ">"
-        "$<$<CONFIG:Release>:"
-            "_DEBUG_MENUS_ENABLED;"
-            "_SECURE_SCL=0"
-        ">"
-        "$<$<CONFIG:ReleaseForArt>:"
-            "_RELEASE_FOR_ART;"
-            "_DEBUG_MENUS_ENABLED;"
-            "_SECURE_SCL=0"
-        ">"
+target_compile_definitions(${PROJECT_NAME} PRIVATE
+    "$<$<CONFIG:ContentPackage_NO_TU>:"
+        "_TU_BUILD;"
+        "_FINAL_BUILD;"
         "_ITERATOR_DEBUG_LEVEL=0;"
+        "NDEBUG;"
+        "_LINUX;"
+        "_CONTENT_PACKAGE;"
         "_MBCS"
-    )
-elseif("${CMAKE_VS_PLATFORM_NAME}" STREQUAL "PSVita")
-    target_compile_definitions(${PROJECT_NAME} PRIVATE
-        "$<$<CONFIG:ContentPackage_NO_TU>:"
-            "_TU_BUILD;"
-            "_FINAL_BUILD;"
-            "_ITERATOR_DEBUG_LEVEL=0;"
-            "NDEBUG;"
-            "_XBOX;"
-            "_CONTENT_PACKAGE"
-        ">"
-        "$<$<CONFIG:CONTENTPACKAGE_SYMBOLS>:"
-            "_CONTENT_PACKAGE;"
-            "_FINAL_BUILD;"
-            "_ITERATOR_DEBUG_LEVEL=0;"
-            "_SECURE_SCL=0"
-        ">"
-        "$<$<CONFIG:ContentPackage>:"
-            "_CONTENT_PACKAGE;"
-            "_FINAL_BUILD"
-        ">"
-        "$<$<CONFIG:Debug>:"
-            "_DEBUG_MENUS_ENABLED;"
-            "_ITERATOR_DEBUG_LEVEL=0;"
-            "_SECURE_SCL=0;"
-            "_DEBUG"
-        ">"
-        "$<$<CONFIG:Release>:"
-            "_DEBUG_MENUS_ENABLED;"
-            "_ITERATOR_DEBUG_LEVEL=0;"
-            "_SECURE_SCL=0"
-        ">"
-        "$<$<CONFIG:ReleaseForArt>:"
-            "_RELEASE_FOR_ART;"
-            "_DEBUG_MENUS_ENABLED;"
-            "_ITERATOR_DEBUG_LEVEL=0;"
-            "_SECURE_SCL=0"
-        ">"
+    ">"
+    "$<$<CONFIG:CONTENTPACKAGE_SYMBOLS>:"
+        "_TU_BUILD;"
+        "_FINAL_BUILD;"
+        "_ITERATOR_DEBUG_LEVEL=0;"
+        "NDEBUG;"
+        "_LINUX;"
+        "_CONTENT_PACKAGE;"
+        "_MBCS"
+    ">"
+    "$<$<CONFIG:ContentPackage>:"
+        "SPLIT_SAVES;"
+        "_LARGE_WORLDS;"
         "_EXTENDED_ACHIEVEMENTS;"
-        "__PSVITA__;"
-        "_MBCS"
-    )
-elseif("${CMAKE_VS_PLATFORM_NAME}" STREQUAL "Windows64")
-    target_compile_definitions(${PROJECT_NAME} PRIVATE
-        "$<$<CONFIG:ContentPackage_NO_TU>:"
-            "_TU_BUILD;"
-            "_FINAL_BUILD;"
-            "_ITERATOR_DEBUG_LEVEL=0;"
-            "NDEBUG;"
-            "_XBOX;"
-            "_CONTENT_PACKAGE;"
-            ""
-        ">"
-        "$<$<CONFIG:CONTENTPACKAGE_SYMBOLS>:"
-            "_TU_BUILD;"
-            "_FINAL_BUILD;"
-            "_ITERATOR_DEBUG_LEVEL=0;"
-            "NDEBUG;"
-            "_CONTENT_PACKAGE"
-        ">"
-        "$<$<CONFIG:ContentPackage>:"
-            "_TU_BUILD;"
-            "_FINAL_BUILD;"
-            "_ITERATOR_DEBUG_LEVEL=0;"
-            "NDEBUG;"
-            "_XBOX;"
-            "_CONTENT_PACKAGE;"
-            ""
-        ">"
-        "$<$<CONFIG:Debug>:"
-            "_LARGE_WORLDS;"
-            "_DEBUG_MENUS_ENABLED;"
-            "_DEBUG;"
-            "_CRT_NON_CONFORMING_SWPRINTFS;"
-            "_CRT_SECURE_NO_WARNINGS;"
-            "_WINDOWS64"
-        ">"
-        "$<$<CONFIG:Release>:"
-            "_LARGE_WORLDS;"
-            "_DEBUG_MENUS_ENABLED;"
-            "_CRT_NON_CONFORMING_SWPRINTFS;"
-            "_CRT_SECURE_NO_WARNINGS;"
-            "_WINDOWS64"
-        ">"
-        "$<$<CONFIG:ReleaseForArt>:"
-            "_TU_BUILD;"
-            "_FINAL_BUILD;"
-            "_ITERATOR_DEBUG_LEVEL=0;"
-            "NDEBUG;"
-            "_XBOX;"
-            "_CONTENT_PACKAGE;"
-            ""
-        ">"
-        "_MBCS"
-    )
-elseif("${CMAKE_VS_PLATFORM_NAME}" STREQUAL "Xbox 360")
-    target_compile_definitions(${PROJECT_NAME} PRIVATE
-        "$<$<CONFIG:ContentPackage_NO_TU>:"
-            "_FINAL_BUILD;"
-            "_CONTENT_PACKAGE;"
-            "NDEBUG"
-        ">"
-        "$<$<CONFIG:CONTENTPACKAGE_SYMBOLS>:"
-            "_TU_BUILD;"
-            "_FINAL_BUILD;"
-            "NDEBUG;"
-            "_CONTENT_PACKAGE;"
-            ""
-        ">"
-        "$<$<CONFIG:ContentPackage>:"
-            "_TU_BUILD;"
-            "_FINAL_BUILD;"
-            "NDEBUG;"
-            "_CONTENT_PACKAGE;"
-            ""
-        ">"
-        "$<$<CONFIG:Debug>:"
-            "_DEBUG_MENUS_ENABLED;"
-            "_SECURE_SCL=0;"
-            "_DEBUG"
-        ">"
-        "$<$<CONFIG:Release>:"
-            "_DEBUG_MENUS_ENABLED;"
-            "NDEBUG;"
-            "PROFILE"
-        ">"
-        "$<$<CONFIG:ReleaseForArt>:"
-            "_DEBUG_MENUS_ENABLED;"
-            "NDEBUG;"
-            "PROFILE"
-        ">"
+        "_FINAL_BUILD;"
+        "_CONTENT_PACKAGE;"
+        "NDEBUG;"
+        "UNICODE;"
+        "_UNICODE"
+    ">"
+    "$<$<CONFIG:Debug>:"
+        "SPLIT_SAVES;"
+        "_LARGE_WORLDS;"
+        "_EXTENDED_ACHIEVEMENTS;"
+        "UNICODE;"
+        "_UNICODE;"
+        "_DEBUG_MENUS_ENABLED;"
+        "_DEBUG;"
+        "_LINUX;"
+        "UNICODE;"
+        "_UNICODE"
+    ">"
+    "$<$<CONFIG:Release>:"
+        "SPLIT_SAVES;"
+        "_LARGE_WORLDS;"
+        "_EXTENDED_ACHIEVEMENTS;"
+        "PROFILE;"
+        "NDEBUG;"
+        "UNICODE;"
+        "_UNICODE;"
+        "_DEBUG_MENUS_ENABLED;"
+        "_CRT_NON_CONFORMING_SWPRINTFS;"
+        "_LINUX;"
+        "UNICODE;"
+        "_UNICODE"
+    ">"
+    "$<$<CONFIG:ReleaseForArt>:"
+        "_TU_BUILD;"
+        "_FINAL_BUILD;"
         "_ITERATOR_DEBUG_LEVEL=0;"
-        "_XBOX;"
+        "NDEBUG;"
+        "_LINUX;"
+        "_CONTENT_PACKAGE;"
+        ";"
         "_MBCS"
-    )
-endif()
+    ">"
+)
 
 ################################################################################
 # Compile and link options

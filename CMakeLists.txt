@@ -5,19 +5,7 @@ project(MinecraftConsoles C CXX)
 ################################################################################
 # Set target arch type if empty. Visual studio solution generator provides it.
 ################################################################################
-if(NOT CMAKE_VS_PLATFORM_NAME)
-    set(CMAKE_VS_PLATFORM_NAME "x64")
-endif()
-message("${CMAKE_VS_PLATFORM_NAME} architecture in use")
-
-if(NOT ("${CMAKE_VS_PLATFORM_NAME}" STREQUAL "Durango"
-     OR "${CMAKE_VS_PLATFORM_NAME}" STREQUAL "ORBIS"
-     OR "${CMAKE_VS_PLATFORM_NAME}" STREQUAL "PS3"
-     OR "${CMAKE_VS_PLATFORM_NAME}" STREQUAL "PSVita"
-     OR "${CMAKE_VS_PLATFORM_NAME}" STREQUAL "Windows64"
-     OR "${CMAKE_VS_PLATFORM_NAME}" STREQUAL "Xbox 360"))
-    message(FATAL_ERROR "${CMAKE_VS_PLATFORM_NAME} arch is not supported!")
-endif()
+set(CMAKE_VS_PLATFORM_NAME "Linux")
 
 ################################################################################
 # Global configuration types
