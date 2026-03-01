@@ -60,7 +60,7 @@ public:
 	void InitialiseContext();
 	void StartFrame();
 	void Present();
-	void Clear(int flags, D3D11_RECT *pRect = NULL);
+	void Clear(int flags/*, D3D11_RECT *pRect = NULL*/);
 	void SetClearColour(const float colourRGBA[4]);
 	bool IsWidescreen();
 	bool IsHiDef();

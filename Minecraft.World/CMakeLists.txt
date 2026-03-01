@@ -1988,4 +1988,4 @@ target_compile_definitions(${PROJECT_NAME} PRIVATE
     ">"
 )
 
-add_compile_options(-fpermissive)
+add_compile_options(-fpermissive -Wtemplate-body)

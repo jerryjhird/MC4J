@@ -57,7 +57,7 @@ public:
 	void Set_matrixDirty();
 
 	// Core
-	void Initialise(ID3D11Device *pDevice, IDXGISwapChain *pSwapChain);
+	void Initialise();
 	void InitialiseContext();
 	void StartFrame();
 	void DoScreenGrabOnNextPresent();

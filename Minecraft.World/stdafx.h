@@ -37,7 +37,37 @@ typedef void* PVOID;
 typedef unsigned long* ULONG_PTR;
 typedef long LONG;
 typedef void VOID;
+#define RtlZeroMemory(Destination,Length) memset((Destination),0,(Length))
+#define ZeroMemory       RtlZeroMemory
+typedef ULONGLONG PlayerUID;
+typedef DWORD WORD;
+#define FALSE false
+typedef struct {
+    DWORD LowPart;
+    long long QuadPart;
+    LONG HighPart;
+} LARGE_INTEGER;
 
+#define XCONTENT_MAX_FILENAME_LENGTH	42
+#define XCONTENT_MAX_DISPLAYNAME_LENGTH MAX_DISPLAYNAME_LENGTH
+
+typedef short SHORT;
+
+typedef struct {
+    int xuidInvitee;
+    int xuidInviter;
+    DWORD dwTitleID;
+    int hostInfo;
+    bool fFromGameInvite;
+} XINVITE_INFO, * PXINVITE_INFO;
+
+typedef XINVITE_INFO INVITE_INFO;
+
+typedef struct HXUIOBJ {
+    // Stub fields representing the actual Xbox HXUIOBJ structure.
+    int id;
+    const char* name;
+} HXUIOBJ;
 
 typedef struct _RTL_CRITICAL_SECTION {
     // 	//
