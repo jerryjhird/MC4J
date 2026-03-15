@@ -82,6 +82,9 @@ bool MultiPlayerGameMode::destroyBlock(int x, int y, int z, int face)
 	bool changed = level->setTile(x, y, z, 0);
 	if (changed)
 	{
+		if (minecraft->modManager) {
+            minecraft->modManager->broadcastEvent("on_break_block", x, y, z, oldTile->id);
+        }
 		oldTile->destroy(level, x, y, z, data);
 	}
 

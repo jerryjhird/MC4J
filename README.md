@@ -1,37 +1,5 @@
-# <img src=".github-assets/logo.jpg" alt="Logo" width="50" height="50"> 4JCraft
 
-
-
-> Ported version of Minecraft Legacy Console edition to other systems
-
----
-
-4JCraft is a modified version of the Minecraft Console Legacy Edition aimed on porting old Minecraft to different platforms (such as Linux, Android, Emscripten, etc.) and refactoring the codebase to improve organization and use modern C++ features.
-
-Join our community:
-* Discord: https://discord.gg/zFCwRWkkUg
-* Steam: https://steamcommunity.com/groups/4JCraft
-
-## Scope & Platform Support
-
-At the moment, we're aiming to support the following platforms:
-
-Please note that these percentages are **estimates** and do not necessarily reflect the final playability of the game on each platform.
-
-- Linux (~85%)
-- Emscripten (~10%) [[Check the Emscripten Branch](https://github.com/4jcraft/4jcraft/tree/feat/emscripten)]
-- macOS (not started) [No official support but people have been able to run the game on MacOS]
-- iOS (not started)
-- Android (not started)
-
-> [!WARNING]
-> There is NO Windows support, for that, go to [smartcmd/MinecraftConsoles](https://github.com/smartcmd/MinecraftConsoles/). 
-
-> All efforts are focused towards a native Linux port, OpenGL rendering pipeline, and modernizing the existing LCE codebase/tooling to make future platform ports easier.
-> 
-> `Windows64` and other platforms originally supported by LCE are currently unsupported, since the original Visual Studio tooling has been stripped from this repository and replaced with our own.
-
----
+# this is a heavily modified fork of `4jcraft` featuring lua mods and well-optimized game code
 
 ## Building (Linux)
 
@@ -40,19 +8,19 @@ Please note that these percentages are **estimates** and do not necessarily refl
 Install the following packages before building (Debian/Ubuntu names shown):
 
 ```bash
-sudo apt-get install -y build-essential libsdl2-dev libgl-dev libglu1-mesa-dev libpthread-stubs0-dev
+sudo apt-get install -y build-essential libsdl2-dev libgl-dev libglu1-mesa-dev libpthread-stubs0-dev liblua5.4-dev lua5.4
 ```
 
 #### Arch/Manjaro
 
 ```bash
-sudo pacman -S base-devel gcc pkgconf cmake sdl2-compat mesa glu
+sudo pacman -S base-devel gcc pkgconf cmake sdl2-compat mesa glu lua
 ```
 
 #### Fedora/Red Hat/Nobara
 
 ```bash
-sudo dnf in gcc gcc-c++ make cmake SDL2-devel mesa-libGL-devel mesa-libGLU-devel openssl-devel
+sudo dnf in gcc gcc-c++ make cmake SDL2-devel mesa-libGL-devel mesa-libGLU-devel openssl-devel lua-devel
 ```
 
 #### Docker
@@ -83,8 +51,10 @@ Follow [this Quickstart guide](https://mesonbuild.com/Quick-guide.html) for inst
 # 1. Configure a build directory (we'll name it `build`)
 meson setup build
 
-# 2. Compile the project
+# 2. Compile and run the project
 meson compile -C build
+cd build/Minecraft.Client
+./Minecraft.Client
 ```
 
 > [!TIP]
@@ -128,19 +98,4 @@ rm -r ./build
 meson setup build
 ```
 
----
-
-## Running
-
-In order to run the compiled binary, you have a compiled copy of the game's assets in your current working directory. These assets are automatically copied to the `Minecraft.Client` folder in your build directory. To run the game, your current working directory must be in this folder.
-
-```sh
-cd build/Minecraft.Client
-./Minecraft.Client
-```
-
----
-
-## Generative AI Policy
-
-Submitting code to this repository authored by generative AI tools (LLMs, agentic coding tools, etc...) is strictly forbidden (see [CONTRIBUTING.md](./CONTRIBUTING.md)). Pull requests that are clearly vibe-coded or written by an LLM will be closed. Contributors are expected to both fully understand the code that they write **and** have the necessary skills to *maintain it*.
+## Contributions are always welcome

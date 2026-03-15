@@ -1,1 +1,1 @@
-meson compile -C build && cd build/Minecraft.Client && ./Minecraft.Client
+meson compile -C build && [ "$DONTRUN" != "TRUE" ] && cd build/Minecraft.Client && MODS=../../Mods ./Minecraft.Client

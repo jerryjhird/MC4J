@@ -46,7 +46,7 @@ class PsPlusUpsellWrapper;
 #undef linux
 #endif
 
-
+#include "ModLoader.h"
 
 class Minecraft
 {
@@ -56,6 +56,7 @@ private:
 	};
 
 public:
+	ModManager* modManager;
 	static const std::wstring VERSION_STRING;
 	Minecraft(Component *mouseComponent, Canvas *parent, MinecraftApplet *minecraftApplet, int width, int height, bool fullscreen);
 	void init();

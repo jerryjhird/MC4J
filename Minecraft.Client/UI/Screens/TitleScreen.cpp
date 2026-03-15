@@ -11,7 +11,9 @@
 #include "../../../Minecraft.World/Platform/System.h"
 #include "../../../Minecraft.World/Util/Random.h"
 #include <GL/gl.h>
+#include "ModManagerScreen.h"
 #include "TitleScreen.h"
+#include <ctime>
 
 Random *TitleScreen::random = new Random();
 
@@ -21,7 +23,7 @@ TitleScreen::TitleScreen()
 	vo = 0;
 	multiplayerButton = NULL;
 
-    splash = L"missingno";
+    splash = L":3";
 //    try {	// 4J - removed try/catch
     std::vector<std::wstring> splashes;
 
@@ -60,20 +62,23 @@ void TitleScreen::keyPressed(wchar_t eventCharacter, int eventKey)
 
 void TitleScreen::init()
 {
-	/* 4J - removed
-    Calendar c = Calendar.getInstance();
-    c.setTime(new Date());
 
-    if (c.get(Calendar.MONTH) + 1 == 11 && c.get(Calendar.DAY_OF_MONTH) == 9) {
-        splash = "Happy birthday, ez!";
-    } else if (c.get(Calendar.MONTH) + 1 == 6 && c.get(Calendar.DAY_OF_MONTH) == 1) {
-        splash = "Happy birthday, Notch!";
-    } else if (c.get(Calendar.MONTH) + 1 == 12 && c.get(Calendar.DAY_OF_MONTH) == 24) {
-        splash = "Merry X-mas!";
-    } else if (c.get(Calendar.MONTH) + 1 == 1 && c.get(Calendar.DAY_OF_MONTH) == 1) {
-        splash = "Happy new year!";
+    // 4J removed this birthday logic but i reimplemented it
+    std::time_t t = std::time(nullptr);
+    std::tm* now = std::localtime(&t);
+
+    int month = now->tm_mon + 1; 
+    int day = now->tm_mday;
+
+    if (month == 11 && day == 9) {
+        splash = L"Happy birthday, ez!";
+    } else if (month == 6 && day == 1) {
+        splash = L"Happy birthday, Notch!";
+    } else if (month == 12 && day == 24) {
+        splash = L"Merry X-mas!";
+    } else if (month == 1 && day == 1) {
+        splash = L"Happy new year!";
     }
-	*/
 
     Language *language = Language::getInstance();
 
@@ -84,18 +89,14 @@ void TitleScreen::init()
     buttons.push_back(multiplayerButton = new Button(2, width / 2 - 100, topPos + spacing * 1, language->getElement(L"menu.multiplayer")));
     buttons.push_back(new Button(3, width / 2 - 100, topPos + spacing * 2, language->getElement(L"menu.mods")));
 
-    if (minecraft->appletMode)
-	{
+    if (minecraft->appletMode) {
         buttons.push_back(new Button(0, width / 2 - 100, topPos + spacing * 3, language->getElement(L"menu.options")));
-    }
-	else
-	{
+    } else {
         buttons.push_back(new Button(0, width / 2 - 100, topPos + spacing * 3 + 12, 98, 20, language->getElement(L"menu.options")));
         buttons.push_back(new Button(4, width / 2 + 2, topPos + spacing * 3 + 12, 98, 20, language->getElement(L"menu.quit")));
     }
 
-    if (minecraft->user == NULL)
-	{
+    if (minecraft->user == NULL) {
         multiplayerButton->active = false;
     }
 
@@ -103,25 +104,20 @@ void TitleScreen::init()
 
 void TitleScreen::buttonClicked(Button *button)
 {
-    if (button->id == 0)
-	{
+    if (button->id == 0) {
         minecraft->setScreen(new OptionsScreen(this, minecraft->options));
     }
-    if (button->id == 1)
-	{
+    if (button->id == 1) {
         minecraft->setScreen(new SelectWorldScreen(this));
     }
-    if (button->id == 2)
-	{
+    if (button->id == 2) {
         minecraft->setScreen(new JoinMultiplayerScreen(this));
     }
-    if (button->id == 3)
-	{
- //       minecraft->setScreen(new TexturePackSelectScreen(this));		// 4J - TODO put back in
+    if (button->id == 3) {
+        minecraft->setScreen(new ModManagerScreen(this)); 
     }
-    if (button->id == 4)
-	{
-        minecraft->stop();
+    if (button->id == 4) {
+        exit(0);
     }
 }
 
@@ -153,7 +149,7 @@ void TitleScreen::render(int xm, int ym, float a)
     glPopMatrix();
 
     drawString(font, ClientConstants::VERSION_STRING, 2, 2, 0x505050);
-    wstring msg = L"Copyright Mojang AB. Do not distribute.";
+    wstring msg = L"github.com/jerryjhird/4jcraft";
     drawString(font, msg, width - font->width(msg) - 2, height - 10, 0xffffff);
 
     Screen::render(xm, ym, a);

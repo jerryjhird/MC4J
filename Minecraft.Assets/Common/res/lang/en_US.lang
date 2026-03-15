@@ -13,7 +13,7 @@ gui.no=No
 
 menu.singleplayer=Singleplayer
 menu.multiplayer=Multiplayer
-menu.mods=Texture Packs
+menu.mods=Mods
 menu.options=Options...
 menu.quit=Quit Game
 menu.returnToMenu=Save and Quit to Title

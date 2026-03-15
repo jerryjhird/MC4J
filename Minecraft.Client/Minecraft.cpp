@@ -111,6 +111,10 @@ int QuickSelectBoxWidth[3]=
 
 Minecraft::Minecraft(Component *mouseComponent, Canvas *parent, MinecraftApplet *minecraftApplet, int width, int height, bool fullscreen)
 {
+	this->modManager = new ModManager(this);
+	const char* env = std::getenv("MODS");
+    this->modManager->loadMods(env ? env : "./Mods");
+
 	// 4J - added this block of initialisers
 	gameMode = NULL;
 	hasCrashed = false;
@@ -246,8 +250,11 @@ void Minecraft::connectTo(const std::wstring& server, int port)
 	connectToPort = port;
 }
 
-void Minecraft::init()
-{
+void Minecraft::init() {
+	if (this->modManager == nullptr) {
+    	this->modManager = new ModManager(this);
+    	this->modManager->loadMods("mods");
+	}
 #if 0 // 4J - removed
 	if (parent != null)
 	{
@@ -1222,8 +1229,10 @@ void Minecraft::createPrimaryLocalPlayer(int iPad)
 	}
 }
 
-void Minecraft::run_middle()
-{
+void Minecraft::run_middle() {
+	if (this->modManager) {
+        this->modManager->update();
+    }
 	static __int64 lastTime = 0;
 	static bool bFirstTimeIntoGame = true;
 	static bool bAutosaveTimerSet=false;
