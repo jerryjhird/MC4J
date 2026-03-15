@@ -123,7 +123,7 @@ void Options::init()
     #else
     framerateLimit = 3;
     #endif
-    fancyGraphics = true;
+    fancyGraphics = false;
     ambientOcclusion = true;
 	renderClouds = true;
     skin = L"Default";
@@ -175,7 +175,7 @@ void Options::init()
 	guiScale = 0;
 	particles = 0;
 	fov = 0;
-	gamma = 0;
+	gamma = 1.0f;
 }
 
 Options::Options(Minecraft *minecraft, File workingDirectory)

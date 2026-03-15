@@ -194,60 +194,52 @@ std::wstring Font::reorderBidi(const std::wstring &str)
 
 void Font::draw(const std::wstring &str, bool dropShadow)
 {
-	// Bind the texture
-	textures->bindTexture(m_textureName);
+    textures->bindTexture(m_textureName);
+    std::wstring cleanStr = sanitize(str); 
+    Tesselator *t = Tesselator::getInstance();
+    
+    t->begin();
 
-	bool noise = false;
-	std::wstring cleanStr = sanitize(str);
+    bool noise = false;
 
-	for (int i = 0; i < (int)cleanStr.length(); ++i)
-	{
-		// Map character
-		wchar_t c = cleanStr.at(i);
+    for (int i = 0; i < (int)cleanStr.length(); ++i)
+    {
+        wchar_t c = cleanStr.at(i);
 
-		if (c == 167 && i + 1 < cleanStr.length())
-		{
-			// 4J - following block was:
-			// int colorN = L"0123456789abcdefk".indexOf(str.toLowerCase().charAt(i + 1));
-			wchar_t ca = cleanStr[i+1];
-			int colorN = 16;
-			if(( ca >= L'0' ) && (ca <= L'9')) colorN = ca - L'0';
-			else if(( ca >= L'a' ) && (ca <= L'f')) colorN = (ca - L'a') + 10;
-			else if(( ca >= L'A' ) && (ca <= L'F')) colorN = (ca - L'A') + 10;
+        if (c == 167 && i + 1 < cleanStr.length())
+        {
+            wchar_t ca = cleanStr[i+1];
+            int colorN = 16;
+            if(( ca >= L'0' ) && (ca <= L'9')) colorN = ca - L'0';
+            else if(( ca >= L'a' ) && (ca <= L'f')) colorN = (ca - L'a') + 10;
+            else if(( ca >= L'A' ) && (ca <= L'F')) colorN = (ca - L'A') + 10;
 
-			if (colorN == 16)
-			{
-				noise = true;
-			}
-			else
-			{
-				noise = false;
-				if (colorN < 0 || colorN > 15) colorN = 15;
+            if (colorN == 16) {
+                noise = true;
+            } else {
+                noise = false;
+                if (colorN < 0 || colorN > 15) colorN = 15;
+                if (dropShadow) colorN += 16;
 
-				if (dropShadow) colorN += 16;
+                int color = colors[colorN];
+                glColor3f((color >> 16) / 255.0F, ((color >> 8) & 255) / 255.0F, (color & 255) / 255.0F);
+            }
+            i += 1;
+            continue;
+        }
+        
+        if (noise) {
+            int newc;
+            do {
+                newc = random->nextInt(SharedConstants::acceptableLetters.length());
+            } while (charWidths[c + 32] != charWidths[newc + 32]);
+            c = newc;
+        }       
 
-				int color = colors[colorN];
-				glColor3f((color >> 16) / 255.0F, ((color >> 8) & 255) / 255.0F, (color & 255) / 255.0F);
-			}
+        renderCharacter(c);
+    }
 
-
-			i += 1;
-			continue;
-		}
-		
-		// "noise" for crazy splash screen message
-		if (noise)
-		{
-			int newc;
-			do
-			{
-				newc = random->nextInt(SharedConstants::acceptableLetters.length());
-			} while (charWidths[c + 32] != charWidths[newc + 32]);
-			c = newc;
-		}		
-
-		renderCharacter(c);
-	}
+    t->end();
 }
 
 void Font::draw(const std::wstring& str, int x, int y, int color, bool dropShadow)
