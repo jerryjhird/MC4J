@@ -20,10 +20,11 @@ log("hello world")
 ```
 
 ### Hooks
-`on_break_block(x, y, z, tileId)` this function is called when a block is broken
-
 `on_tick()` this function is called every in game tick
 
+`on_break_block(x, y, z, tileId)` this function is called when a block is broken
+
+`on_player_move(x, y, z)` (x, y, z) of new position
 
 ### Exposed Functions
 `log(message)` prints text to stdio

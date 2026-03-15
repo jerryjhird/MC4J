@@ -133,6 +133,12 @@ void MultiplayerLocalPlayer::sendPosition()
         }
     }
 
+	if (minecraft->modManager) {
+        if (move) {
+            minecraft->modManager->broadcastEvent("on_player_move", x, bb->y0, z);
+        }
+	}
+
 	positionReminder++;
     lastOnGround = onGround;
 
