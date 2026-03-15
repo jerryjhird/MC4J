@@ -198,12 +198,13 @@ std::wstring Options::getKeyDescription(int i)
 
 std::wstring Options::getKeyMessage(int i)
 {
-	int key = keyMappings[i]->key;
-	if (key < 0) {
-		return I18n::get(L"key.mouseButton", key + 101);
-	} else {
-		return Keyboard::getKeyName(keyMappings[i]->key);
-	}
+    int key = keyMappings[i]->key;
+    if (key < 0) {
+        std::wstring buttonName = std::to_wstring(key + 101);
+        return I18n::get(L"key.mouseButton", buttonName.c_str());
+    } else {
+        return Keyboard::getKeyName(keyMappings[i]->key);
+    }
 }
 
 void Options::setKey(int i, int key)
