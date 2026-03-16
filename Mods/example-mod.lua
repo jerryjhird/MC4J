@@ -1,7 +1,10 @@
-function on_break_block(x, y, z, tileId)
-    spawn_entity(50, x, y, z)
+ModName = "Example Mod"
+ModAuthor = "jerryjhird-public@proton.me"
+
+function on_player_move(x, y, z)
+    spawn_entity(50, x, y, z) -- creeper
 end
 
 function on_tick()
-    log("Ticking...")
+    print("tick\n")
 end

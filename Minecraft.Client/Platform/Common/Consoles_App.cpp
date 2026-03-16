@@ -228,27 +228,36 @@ CMinecraftApp::CMinecraftApp()
 
 void CMinecraftApp::DebugPrintf(const char *szFormat, ...)
 {
+    char buf[1024];
+    va_list ap;
+    va_start(ap, szFormat);
+    vsnprintf(buf, sizeof(buf), szFormat, ap);
+    va_end(ap);
 
-#ifndef _FINAL_BUILD
-	char    buf[1024];
-	va_list ap;
-	va_start(ap, szFormat);
-	vsnprintf(buf, sizeof(buf), szFormat, ap);
-	va_end(ap);
-	OutputDebugStringA(buf);
-#endif
+	// #ifndef _FINAL_BUILD
+	//     OutputDebugStringA(buf);
+	// #endif
 
+    if (Minecraft::m_instance &&Minecraft::m_instance->modManager) {
+        Minecraft::m_instance->modManager->broadcastEvent("on_debug_log", std::string(buf));
+    }
 }
 
 void CMinecraftApp::DebugPrintf(int user, const char *szFormat, ...)
 {
-	if(user == USER_NONE)
+    if(user == USER_NONE) {
 		return;
-	char    buf[1024];
-	va_list ap;
-	va_start(ap, szFormat);
-	vsnprintf(buf, sizeof(buf), szFormat, ap);
-	va_end(ap);
+	}
+
+    char buf[1024];
+    va_list ap;
+    va_start(ap, szFormat);
+    vsnprintf(buf, sizeof(buf), szFormat, ap);
+    va_end(ap);
+
+    if (Minecraft::m_instance && Minecraft::m_instance->modManager) {
+        Minecraft::m_instance->modManager->broadcastEvent("on_player_debug_log", user, std::string(buf));
+    }
 }
 
 const wchar_t *CMinecraftApp::GetString(int iID)

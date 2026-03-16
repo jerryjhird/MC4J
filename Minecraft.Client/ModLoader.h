@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include <iostream>
+#include <map>
 
 class Minecraft;
 
@@ -19,24 +20,27 @@ public:
     }
 
     template<typename... Args>
-    void broadcastEvent(const std::string& eventName, Args&&... args) {
+    void ModManager::broadcastEvent(const std::string& functionName, Args&&... args) {
         std::lock_guard<std::mutex> lock(luaLock);
-        
+
         for (size_t i = 0; i < modEnvironments.size(); ++i) {
-            std::wstring& name = loadedModNames[i];
+            const std::wstring& modName = loadedModNames[i];
+            
+            if (!modEnabledMap[modName]) continue;
 
-            if (modEnabledMap.count(name) && !modEnabledMap[name]) {
-                continue; 
-            }
+            sol::environment& env = modEnvironments[i];
+            sol::protected_function func = env[functionName];
 
-            auto& env = modEnvironments[i];
-            sol::optional<sol::function> func = env[eventName];
-            if (func && func->is<sol::function>()) {
-                auto result = (*func)(std::forward<Args>(args)...);
+            if (func.valid()) {
+                auto result = func.call(std::forward<Args>(args)...);
+
                 if (!result.valid()) {
                     sol::error err = result;
-                    std::cerr << "[Lua] [Event ERR] (" << std::string(name.begin(), name.end()) 
-                            << ") " << eventName << ": " << err.what() << std::endl;
+                    
+                    fprintf(stderr, "[ModLoader] [ERROR] '%ls' failed in %s(...) disabling mod...\n", 
+                            modName.c_str(), functionName.c_str());
+                    fprintf(stderr, "  Detail: %s\n", err.what());
+                    modEnabledMap[modName] = false;
                 }
             }
         }
@@ -50,5 +54,4 @@ private:
     std::mutex luaLock;
     
     std::vector<sol::environment> modEnvironments;
-    std::vector<sol::function> tickCallbacks;
 };

@@ -18,8 +18,8 @@ ModManager::ModManager(Minecraft* mc) : minecraft(mc) {
                       sol::lib::string
     );
 
-    lua.set_function("log", [](std::string msg) {
-        puts(msg.c_str());
+    lua.set_function("print", [](std::string msg) {
+        ::write(1, msg.c_str(), msg.length()); 
     });
 
     lua.set_function("spawn_entity", [this](int entityId, float x, float y, float z) {
@@ -39,35 +39,51 @@ void ModManager::loadMods(const std::string& directory) {
 
     std::lock_guard<std::mutex> lock(luaLock);
     
-    tickCallbacks.clear();
     modEnvironments.clear();
     loadedModNames.clear();
+    modEnabledMap.clear();
 
     for (const auto& entry : std::filesystem::directory_iterator(directory)) {
         if (entry.path().extension() == ".lua") {
-            std::wstring wModName = entry.path().filename().wstring();
             std::string path = entry.path().string();
-            
-            if (modEnabledMap.find(wModName) == modEnabledMap.end()) {
-                modEnabledMap[wModName] = false;
-            }
-
             sol::environment modEnv(lua, sol::create, lua.globals());
-            auto loadResult = lua.script_file(path, modEnv, sol::script_pass_on_error);
             
-            if (!loadResult.valid()) {
+            auto loadResult = lua.script_file(path, modEnv, sol::script_pass_on_error);
+            if (!loadResult.valid()) { // if lua is unable to load file (e.g syntax error)
                 sol::error err = loadResult;
                 printf("[Lua] [ERR] %s: %s\n", path.c_str(), err.what());
                 continue;
             }
 
-            sol::optional<sol::function> onTick = modEnv["on_tick"];
-            if (onTick && onTick->is<sol::function>()) {
-                tickCallbacks.push_back(*onTick);
+            sol::optional<std::string> luaModName = modEnv["ModName"];
+            sol::optional<std::string> author = modEnv["ModAuthor"];
+
+            if (!luaModName || luaModName->empty() || !author) {
+                printf("[Lua] [REJECTED] %s: Missing ModName or ModAuthor.\n", path.c_str());
+                continue; 
             }
 
+            std::string finalName = *luaModName;
+            int duplicateCount = 1;
+
+            auto nameExists = [&](const std::string& nameToCheck) {
+                std::wstring wCheck(nameToCheck.begin(), nameToCheck.end());
+                return std::find(loadedModNames.begin(), loadedModNames.end(), wCheck) != loadedModNames.end();
+            };
+
+            while (nameExists(finalName)) {
+                finalName = *luaModName + " (" + std::to_string(duplicateCount) + ")";
+                duplicateCount++;
+            }
+
+            std::wstring wFinalName(finalName.begin(), finalName.end());
+            
+            modEnabledMap[wFinalName] = false;
+            
             modEnvironments.push_back(modEnv);
-            loadedModNames.push_back(wModName);
+            loadedModNames.push_back(wFinalName);
+
+            printf("[ModLoader] Registered: %s by %s\n", finalName.c_str(), author->c_str());
         }
     }
 }
@@ -76,18 +92,12 @@ void ModManager::update() {
     std::lock_guard<std::mutex> lock(luaLock);
     
     for (size_t i = 0; i < modEnvironments.size(); ++i) {
-        std::wstring& name = loadedModNames[i];
-        
-        if (modEnabledMap.count(name) && !modEnabledMap[name]) {
-            continue;
-        }
+        const std::wstring& modName = loadedModNames[i];
+        if (!modEnabledMap[modName]) continue;
 
-        sol::optional<sol::function> tick = modEnvironments[i]["on_tick"];
-        if (tick && tick->is<sol::function>()) {
-            auto result = (*tick)();
-            if (!result.valid()) {
-                sol::error err = result;
-            }
+        sol::protected_function onTick = modEnvironments[i]["on_tick"];
+        if (onTick.valid()) {
+            auto result = onTick();
         }
     }
 }

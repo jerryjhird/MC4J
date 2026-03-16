@@ -73,6 +73,18 @@ void StatsCounter::award(Stat* stat, unsigned int difficulty, unsigned int count
 		if( flushCounter == 0 )
 			flushCounter = FLUSH_DELAY;
 	}
+
+	if (Minecraft::m_instance && Minecraft::m_instance->modManager)
+	{
+		Minecraft::m_instance->modManager->broadcastEvent("on_stat_awarded", 
+			stat->id, 
+			stat->name, 
+			difficulty, 
+			count,
+        val->second.stats[difficulty]
+    );
+	}
+
 #endif
 }
 

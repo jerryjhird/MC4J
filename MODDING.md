@@ -1,12 +1,23 @@
-### Creating a mod
-to make a mod simply create a lua file in the {project_root}/Mods folder and it should appear in the "Mods" title screen and pause menu
-if you are running the binary directly please specify the Mods in ENV like so:
-```bash
-MODS=../../Mods ./Minecraft.Client
+## Documentation
+
+the following modules are exposed to every lua script
+
+```cpp
+sol::lib::base, 
+sol::lib::package, 
+sol::lib::table, 
+sol::lib::math,
+sol::lib::string
 ```
 
-### Documentation
-hooks are functions you setup and when the event associated with that hook happens in game it will call your code
+to start making a mod create a file in the Mods folder and write your mod metadata. for example:
+```lua
+ModName = "Example Mod"
+ModAuthor = "jerryjhird-public@proton.me"
+```
+
+
+Events are functions with specific names that you define in your lua code and when the event associated with that function name happens in game it will call your code
 for example if i wanted to do something when the player breaks a block:
 ```lua
 function on_break_block(x, y, z, tileId)
@@ -16,17 +27,19 @@ end
 
 exposed functions are functions given to you. for example:
 ```lua
-log("hello world")
+print("hello world\n")
 ```
 
-### Hooks
+### Events
 `on_tick()` this function is called every in game tick
 
-`on_break_block(x, y, z, tileId)` this function is called when a block is broken
+`on_break_block((int)x, (int)y, (int)z,  (int)tileId)` this function is called when a block is broken
 
-`on_player_move(x, y, z)` (x, y, z) of new position
+`on_stat_awarded((int)statId, (string)statName, (int)difficulty, (int)amountAdded, (int)totalValue)`
+
+`on_player_move((float)x, (float)y, (float)z)`
 
 ### Exposed Functions
-`log(message)` prints text to stdio
+`log((string)message)` prints text to stdio
 
-`spawn_entity(int entityId, float x, float y, float z)` spawns an entity/mob
+`spawn_entity((int)entityId, (float)x, (float)y, (float)z)` spawns an entity/mob
