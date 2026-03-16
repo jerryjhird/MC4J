@@ -47,6 +47,12 @@ Follow [this Quickstart guide](https://mesonbuild.com/Quick-guide.html) for inst
 
 #### Configure & Build
 
+The binary outputs to:
+
+```
+./build/Minecraft.Client/Minecraft.Client
+```
+
 ```bash
 # 1. Configure a build directory (we'll name it `build`)
 meson setup build
@@ -54,7 +60,7 @@ meson setup build
 # 2. Compile and run the project
 meson compile -C build
 cd build/Minecraft.Client
-./Minecraft.Client
+MODS=../../Mods ./Minecraft.Client
 ```
 
 > [!TIP]
@@ -70,12 +76,6 @@ cd build/Minecraft.Client
 > ```bash
 > meson setup --native-file ./scripts/llvm_native.txt build --reconfigure
 > ```
-
-The binary is output to:
-
-```
-./build/Minecraft.Client/Minecraft.Client
-```
 
 #### Clean
 
