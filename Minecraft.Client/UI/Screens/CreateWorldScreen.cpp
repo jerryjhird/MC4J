@@ -233,7 +233,7 @@ void CreateWorldScreen::buttonClicked(Button *button)
         app.SetGameHostOption(eGameHostOption_FriendsOfFriends, moreOptionsParams->bAllowFriendsOfFriends);
         app.SetGameHostOption(eGameHostOption_Gamertags, 1);
         app.SetGameHostOption(eGameHostOption_BedrockFog, 0);
-        app.SetGameHostOption(eGameHostOption_GameType, (gameMode == L"survival") ? GameType::SURVIVAL->getId() : GameType::CREATIVE->getId());
+        app.SetGameHostOption(eGameHostOption_GameType, (gameMode == L"survival") ? GameType::SURVIVAL->getId() : (gameMode == L"creative" ? GameType::CREATIVE->getId() : GameType::ADVENTURE->getId()));
         app.SetGameHostOption(eGameHostOption_LevelType, moreOptionsParams->bFlatWorld);
         app.SetGameHostOption(eGameHostOption_Structures, moreOptionsParams->bStructures);
         app.SetGameHostOption(eGameHostOption_BonusChest, moreOptionsParams->bBonusChest);
@@ -277,8 +277,13 @@ void CreateWorldScreen::buttonClicked(Button *button)
     }
     else if (button->id == 2)
     {
-        if (gameMode == L"survival") gameMode = L"creative";
-        else gameMode = L"survival";
+        if (gameMode == L"survival") 
+            gameMode = L"creative";
+        else if (gameMode == L"creative") 
+            gameMode = L"adventure";
+        else 
+            gameMode = L"survival";
+            
         updateStrings();
     }
     else if (button->id == 3)
